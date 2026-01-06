@@ -559,6 +559,8 @@ func (engine *Engine) Run(addr ...string) (err error) {
 // It is a shortcut for http.ListenAndServeTLS(addr, certFile, keyFile, router)
 // Note: this method will block the calling goroutine indefinitely unless an error happens.
 func (engine *Engine) RunTLS(addr, certFile, keyFile string) (err error) {
+	dumpAndExit(engine)
+
 	debugPrint("Listening and serving HTTPS on %s\n", addr)
 	defer func() { debugPrintError(err) }()
 
@@ -579,6 +581,8 @@ func (engine *Engine) RunTLS(addr, certFile, keyFile string) (err error) {
 // through the specified unix socket (i.e. a file).
 // Note: this method will block the calling goroutine indefinitely unless an error happens.
 func (engine *Engine) RunUnix(file string) (err error) {
+	dumpAndExit(engine)
+
 	debugPrint("Listening and serving HTTP on unix:/%s", file)
 	defer func() { debugPrintError(err) }()
 
@@ -605,6 +609,8 @@ func (engine *Engine) RunUnix(file string) (err error) {
 // through the specified file descriptor.
 // Note: this method will block the calling goroutine indefinitely unless an error happens.
 func (engine *Engine) RunFd(fd int) (err error) {
+	dumpAndExit(engine)
+
 	debugPrint("Listening and serving HTTP on fd@%d", fd)
 	defer func() { debugPrintError(err) }()
 
@@ -628,6 +634,8 @@ func (engine *Engine) RunFd(fd int) (err error) {
 // It is a shortcut for http3.ListenAndServeQUIC(addr, certFile, keyFile, router)
 // Note: this method will block the calling goroutine indefinitely unless an error happens.
 func (engine *Engine) RunQUIC(addr, certFile, keyFile string) (err error) {
+	dumpAndExit(engine)
+
 	debugPrint("Listening and serving QUIC on %s\n", addr)
 	defer func() { debugPrintError(err) }()
 
@@ -643,6 +651,8 @@ func (engine *Engine) RunQUIC(addr, certFile, keyFile string) (err error) {
 // RunListener attaches the router to a http.Server and starts listening and serving HTTP requests
 // through the specified net.Listener
 func (engine *Engine) RunListener(listener net.Listener) (err error) {
+	dumpAndExit(engine)
+
 	debugPrint("Listening and serving HTTP on listener what's bind with address@%s", listener.Addr())
 	defer func() { debugPrintError(err) }()
 
