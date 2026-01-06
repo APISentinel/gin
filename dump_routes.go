@@ -15,7 +15,7 @@ type RouteDump struct {
 	Handler string `json:"handler"`
 }
 
-func dumpAndExit(engine *Engine) {
+func DumpRoutes(engine *Engine) {
 	once.Do(func() {
 		outputFile := os.Getenv("GIN_DUMP_ROUTES")
 		if outputFile == "" {
