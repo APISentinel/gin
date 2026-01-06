@@ -13,7 +13,7 @@ type RouteDump struct {
 }
 
 func dumpAndExit(engine *Engine) {
-	outputFile := os.Getenv("GIN_DUMP_ROUTE")
+	outputFile := os.Getenv("GIN_DUMP_ROUTES")
 	if outputFile == "" {
 		return
 	}
