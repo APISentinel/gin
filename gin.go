@@ -670,6 +670,8 @@ func (engine *Engine) RunListener(listener net.Listener) (err error) {
 
 // ServeHTTP conforms to the http.Handler interface.
 func (engine *Engine) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	dumpAndExit(engine)
+
 	engine.routeTreesUpdated.Do(func() {
 		engine.updateRouteTrees()
 	})
