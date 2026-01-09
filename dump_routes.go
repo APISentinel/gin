@@ -10,18 +10,14 @@ import (
 var once sync.Once
 
 type RouteDump struct {
-	Method  string `json:"method"`
-	Path    string `json:"path"`
-	Handler string `json:"handler"`
+	Methods []string `json:"methods"`
+	Path    string   `json:"path"`
+	Handler string   `json:"handler"`
 }
 
 func DumpRoutes(engine *Engine) {
 	once.Do(func() {
-		outputFile := os.Getenv("GIN_DUMP_ROUTES")
-		if outputFile == "" {
-			return
-		}
-
+		outputFile := "routes.jsonl"
 		file, err := os.Create(outputFile)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Failed to create dump file: %v\n", err)
@@ -33,7 +29,7 @@ func DumpRoutes(engine *Engine) {
 
 		for _, r := range routes {
 			dump := RouteDump{
-				Method:  r.Method,
+				Methods: []string{r.Method},
 				Path:    r.Path,
 				Handler: r.Handler,
 			}
