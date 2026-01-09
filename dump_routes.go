@@ -10,9 +10,9 @@ import (
 var once sync.Once
 
 type RouteDump struct {
-	Methods []string `json:"methods"`
-	Path    string   `json:"path"`
-	Handler string   `json:"handler"`
+	Method  string `json:"method"`
+	Path    string `json:"path"`
+	Handler string `json:"handler"`
 }
 
 func DumpRoutes(engine *Engine) {
@@ -33,7 +33,7 @@ func DumpRoutes(engine *Engine) {
 
 		for _, r := range routes {
 			dump := RouteDump{
-				Methods: []string{r.Method},
+				Method:  r.Method,
 				Path:    r.Path,
 				Handler: r.Handler,
 			}
