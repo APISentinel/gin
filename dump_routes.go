@@ -17,7 +17,11 @@ type RouteDump struct {
 
 func DumpRoutes(engine *Engine) {
 	once.Do(func() {
-		outputFile := "routes.jsonl"
+		outputFile := os.Getenv("GIN_DUMP_ROUTES_PATH")
+		if outputFile == "" {
+			outputFile = "routes.jsonl"
+		}
+
 		file, err := os.Create(outputFile)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Failed to create dump file: %v\n", err)
